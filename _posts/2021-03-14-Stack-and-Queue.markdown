@@ -69,14 +69,14 @@ public class Stack<Item>
 * 8 bytes for the reference to String
 * 8 bytesfor the reference to Node
 Total: 40 bytes per stack node
-> ref[Java:Size of inner class-Stackoverflow](https://stackoverflow.com/questions/12193116/java-size-of-inner-class)
+ref: [Java:Size of inner class-Stackoverflow](https://stackoverflow.com/questions/12193116/java-size-of-inner-class)  
+
 ### More:
 #### 1.1
 new Object()将占用多少byte的内存空间？
 ```js
-原生类型（primitive type）的内存占用
+原生类型(primitive type)的内存占用
 Primitive Type      Memory Required(bytes)
-——————————————————————————————————————————
     boolean                      1
     byte                         1
     short                        2
