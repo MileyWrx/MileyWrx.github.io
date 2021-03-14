@@ -35,7 +35,7 @@ tags:
 
 
 
-## CommonJS & Node
+## CommonJS
 
 > Javascript: not just for browsers any more! —— CommonJS Slogen
 
@@ -71,8 +71,8 @@ CommonJS 前身叫 ServerJS ，**后来希望能更加 COMMON，成为通吃各�
 
 本文接下来要讨论的典例是：
 
-* RequireJS & AMD（异步加载，预执行，依赖前置。默认推荐 AMD 写法）
-* SeaJS & CMD（异步加载，懒执行，依赖就近，默认推荐 CommonJS 写法）
+* RequireJS  AMD（异步加载，预执行，依赖前置。默认推荐 AMD 写法）
+* SeaJS  CMD（异步加载，懒执行，依赖就近，默认推荐 CommonJS 写法）
 
 
 
@@ -97,7 +97,7 @@ CommonJS 前身叫 ServerJS ，**后来希望能更加 COMMON，成为通吃各�
 补一嘴：阿里 KISSY 的 KMD 其实跟 AMD 非常类似，只是用 `add`和`use` 两个源自于 YUI Modules 的函数名替换了 `define` 和 `require` ，但其原理更接近 RequireJS ，与 YUI Modules 的 `Y` 沙箱 Attach 机制并不相同
 
 
-## RequireJS & AMD
+## RequireJS  AMD
 
 [AMD (Async Module Definition)](http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition) 是 RequireJS 在推广过程中对模块定义的规范化产出。
 
