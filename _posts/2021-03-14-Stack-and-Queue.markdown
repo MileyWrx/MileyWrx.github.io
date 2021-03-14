@@ -147,7 +147,8 @@ public class Stack<Item>
 ### More
 #### 2.1
 what is loitering?
-> Loitering: Holding a reference to an object when it is no longer needed. -- _Algorithm_ slides by Priceton Universily
+> Loitering: Holding a reference to an object when it is no longer needed. -- _Algorithm_, Priceton Universily  
+
 example:
 ```js
 // loitering
@@ -339,44 +340,3 @@ define('hello', ['jquery'], function(require, exports, module) {
 
 
 Sea.js 借鉴了 RequireJS 的不少东西，比如将 FlyScript 中的 module.declare 改名为 define 等。Sea.js 更多地来自 Modules/2.0 的观点，但尽可能去掉了学院派的东西，加入了不少实战派的理念。
-
-
-
-## AMD vs CMD
-
-**虽然两者目前都兼容各种风格，但其底层原理并不相同，从其分别推荐的写法就可以看出两者背后原理的不同：**
-
-1. 对于依赖的模块，AMD 是**提前执行**，CMD 是**懒执行**。（都是先加载）
-*  CMD 推崇**依赖就近**，AMD 推崇**依赖前置**。   
-
-看代码：
-
-```js
-// AMD 默认推荐
-
-define(['./a', './b'], function(a, b) {  // 依赖前置，提前执行
-
-    a.doSomething()
-    b.doSomething()
-
-})
-
-```
-
-```js
-// CMD
-
-define(function(require, exports, module) {
-
-    var a = require('./a')
-    a.doSomething()
-
-    var b = require('./b') // 依赖就近，延迟执行
-    b.doSomething()
-})
-```
-
-
-## WebPack
-
-> working...
