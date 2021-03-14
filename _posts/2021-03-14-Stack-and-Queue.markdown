@@ -15,15 +15,15 @@ tags:
 ## Catalog
 
 
-1.  [Linked List Implementation](#1.利用链表实现栈)
-2.  [Resizing Array Implementation](#2.利用扩容数组实现栈)
+1.  [Linked List Implementation](#利用链表实现栈)
+2.  [Resizing Array Implementation](#利用扩容数组实现栈)
 3.  [RequireJS & AMD](#requirejs--amd)
 4.  [SeaJS & CMD](#seajs--cmd)
 
 
 > Stack: Examine the item most reccently added ("last in forst out").
 
-## 1.利用链表实现栈
+## 利用链表实现栈
 
 ```js
 public class Stack<Item>
@@ -106,7 +106,7 @@ GFG g = new GFG();
 g.geek();
 ```
 
-## 2.利用扩容数组实现栈
+## 利用扩容数组实现栈
 
 ```js
 public class Stack<Item>
