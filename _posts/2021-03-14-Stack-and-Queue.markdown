@@ -110,10 +110,43 @@ GFG g = new GFG();
 g.geek();
 ```
 
-## 2.利用数组实现栈
+## 2.利用扩容数组实现栈
 
 ```js
-
+public class Stack<Item>
+{
+    private Item[] s;
+    private int N = 0;
+    
+    public Stack(int capacity)
+    {s = (Item[]) new Object[capacity];}
+    
+    public boolean isEmpty() 
+    {return N == 0;}
+    
+    public int size()
+    {return N;}
+    
+    public void push(Item item){
+        if(N == s.length) resize(2 * s.length)
+        s[N++] = item;
+    }
+    
+    private void resize(int capacity){
+        Item[] copy = (Item[]) new Object[capacity];
+        for(int i = 0; i < s.length; i++){
+            copy[i] = s[i];
+        }
+        s = copy;
+    }
+    
+    public Item pop(){
+        Item item = s[--N];
+        s[N] = null; // avoid loitering
+        if(N > 0 && N == s.length/4) resize(s.length/2);
+        return item;
+    }
+}
 ```
 
 
