@@ -7,5 +7,5 @@
   4. See your post!
 
 ## ATTENTION:
-  1. name of the file must be like "2021-03-14-Stack-and-Queue.markdown" using "-" in every blankspace.
+  1. name of the file must be like "2021-03-14-Stack-and-Queue.markdown", using "-" in every blankspace.
 
