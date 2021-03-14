@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Example Post with Code Highlight - Ruoxuan Wang</title>
+    <title>01 Stack and Queue - Ruoxuan Wang</title>
 
-    <link rel="canonical" href="http://localhost:4000/2015/05/25/js-module-loader/">
+    <link rel="canonical" href="http://localhost:4000/2021/03/14/Stack-and-Queue/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -125,12 +125,12 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-bg-js-module.jpg" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-rwd.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/post-bg-js-module.jpg')
+        background-image: url('/img/post-bg-rwd.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -140,17 +140,17 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#前端开发" title="前端开发">前端开发</a>
+                        <a class="tag" href="/tags/#Data Structures" title="Data Structures">Data Structures</a>
                         
-                        <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        <a class="tag" href="/tags/#Java" title="Java">Java</a>
                         
                     </div>
-                    <h1>Example Post with Code Highlight</h1>
+                    <h1>01 Stack and Queue</h1>
                     
                     
-                    <h2 class="subheading">CommonJS，RequireJS，SeaJS 归纳笔记</h2>
+                    <h2 class="subheading">chapter 2 of Princeton Algorithm</h2>
                     
-                    <span class="meta">Posted by Hux on May 25, 2015</span>
+                    <span class="meta">Posted by Miley on March 14, 2021</span>
                 </div>
             </div>
         </div>
@@ -191,7 +191,7 @@
   <li><a href="#webpack">WebPack</a></li>
 </ol>
 
-<h2 id="commonjs--node">CommonJS &amp; Node</h2>
+<h2 id="commonjs">CommonJS</h2>
 
 <blockquote>
   <p>Javascript: not just for browsers any more! —— CommonJS Slogen</p>
@@ -229,8 +229,8 @@
 <p>本文接下来要讨论的典例是：</p>
 
 <ul>
-  <li>RequireJS &amp; AMD（异步加载，预执行，依赖前置。默认推荐 AMD 写法）</li>
-  <li>SeaJS &amp; CMD（异步加载，懒执行，依赖就近，默认推荐 CommonJS 写法）</li>
+  <li>RequireJS  AMD（异步加载，预执行，依赖前置。默认推荐 AMD 写法）</li>
+  <li>SeaJS  CMD（异步加载，懒执行，依赖就近，默认推荐 CommonJS 写法）</li>
 </ul>
 
 <h2 id="history">History</h2>
@@ -253,7 +253,7 @@
 
 <p>补一嘴：阿里 KISSY 的 KMD 其实跟 AMD 非常类似，只是用 <code class="language-plaintext highlighter-rouge">add</code>和<code class="language-plaintext highlighter-rouge">use</code> 两个源自于 YUI Modules 的函数名替换了 <code class="language-plaintext highlighter-rouge">define</code> 和 <code class="language-plaintext highlighter-rouge">require</code> ，但其原理更接近 RequireJS ，与 YUI Modules 的 <code class="language-plaintext highlighter-rouge">Y</code> 沙箱 Attach 机制并不相同</p>
 
-<h2 id="requirejs--amd">RequireJS &amp; AMD</h2>
+<h2 id="requirejs--amd">RequireJS  AMD</h2>
 
 <p><a href="http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition">AMD (Async Module Definition)</a> 是 RequireJS 在推广过程中对模块定义的规范化产出。</p>
 
@@ -477,10 +477,10 @@
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="/2015/05/25/js-module-loader"
-                    data-title="Example Post with Code Highlight"
-                    data-url="http://localhost:4000/2015/05/25/js-module-loader/"
-                    data-images="http://localhost:4000/img/post-bg-js-module.jpg"
+                    data-thread-key="/2021/03/14/Stack-and-Queue"
+                    data-title="01 Stack and Queue"
+                    data-url="http://localhost:4000/2021/03/14/Stack-and-Queue/"
+                    data-images="http://localhost:4000/img/post-bg-rwd.jpg"
                     data-content="Foreword
 
 
@@ -507,13 +507,9 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2015/04/14/unix-linux-note/" data-toggle="tooltip" data-placement="top" title="Example Post">&larr; Previous Post</a>
+                        <a href="/2021/01/31/Princeton-Algorithm-Overview/" data-toggle="tooltip" data-placement="top" title="Princeton Algorithm Overview">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2015/07/09/js-module-7day/" data-toggle="tooltip" data-placement="top" title="Example Post using Keynote Layout">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
@@ -522,9 +518,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="/2015/05/25/js-module-loader"
-                        data-title="Example Post with Code Highlight"
-                        data-url="http://localhost:4000/2015/05/25/js-module-loader/" >
+                        data-thread-key="/2021/03/14/Stack-and-Queue"
+                        data-title="01 Stack and Queue"
+                        data-url="http://localhost:4000/2021/03/14/Stack-and-Queue/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
