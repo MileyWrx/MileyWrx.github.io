@@ -1,13 +1,13 @@
 ---
 layout:     post
-title:      "Example Post with Code Highlight"
-subtitle:   "CommonJS，RequireJS，SeaJS 归纳笔记"
-date:       2015-05-25
-author:     "Hux"
-header-img: "img/post-bg-js-module.jpg"
+title:      "01 Stack and Queue"
+subtitle:   "chapter 2 of Princeton Algorithm"
+date:       2021-03-14
+author:     "Miley"
+header-img: "img/post-bg-rwd.jpg"
 tags:
-    - 前端开发
-    - JavaScript
+    - Data Structures
+    - Java
 ---
 
 
