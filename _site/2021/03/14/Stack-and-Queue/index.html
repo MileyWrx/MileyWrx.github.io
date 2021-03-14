@@ -168,90 +168,157 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h2 id="foreword">Foreword</h2>
-
-<blockquote>
-  <p>Here comes Module!</p>
-</blockquote>
-
-<p>随着网站逐渐变成「互联网应用程序」，嵌入网页的 JavaScript 代码越来越庞大，越来越复杂。网页越来越像桌面程序，需要一个团队分工协作、进度管理、单元测试……我们不得不使用软件工程的方法，来管理网页的业务逻辑。</p>
-
-<p>于是，JavaScript 的模块化成为迫切需求。在 ES6 Module 来临之前，JavaScript 社区提供了强大支持，尝试在现有的运行环境下，实现模块的效果。</p>
-
-<hr />
-
-<h2 id="catalog">Catalog</h2>
+				<h2 id="catalog">Catalog</h2>
 
 <ol>
-  <li><a href="#commonjs--node">CommonJS &amp; Node</a></li>
-  <li><a href="#history">History</a></li>
+  <li><a href="#利用链表实现栈">Linked List Implementation</a></li>
+  <li><a href="#利用扩容数组实现栈">Resizing Array Implementation</a></li>
   <li><a href="#requirejs--amd">RequireJS &amp; AMD</a></li>
   <li><a href="#seajs--cmd">SeaJS &amp; CMD</a></li>
-  <li><a href="#amd-vs-cmd">AMD vs CMD</a></li>
-  <li><a href="#webpack">WebPack</a></li>
 </ol>
 
-<h2 id="commonjs">CommonJS</h2>
-
 <blockquote>
-  <p>Javascript: not just for browsers any more! —— CommonJS Slogen</p>
+  <p>Stack: Examine the item most reccently added (“last in forst out”).</p>
 </blockquote>
 
-<p>前端模块化的事实标准之一，2009 年 8 月，<a href="http://wiki.commonjs.org/wiki/CommonJS">CommonJS</a> 诞生。</p>
+<h2 id="利用链表实现栈">利用链表实现栈</h2>
 
-<p>CommonJS 本质上只是一套规范（API 定义），而 Node.js 采用并实现了部分规范，CommonJS Module 的写法也因此广泛流行。</p>
-
-<p>让我们看看 Node 中的实现：</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 由于 Node 原生支持模块的作用域，并不需要额外的 wrapper</span>
-<span class="c1">// "as though the module was wrapped in a function"</span>
-
-<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./a</span><span class="dl">'</span><span class="p">)</span>  <span class="c1">// 加载模块（同步加载）</span>
-<span class="nx">a</span><span class="p">.</span><span class="nx">doSomething</span><span class="p">()</span>         <span class="c1">// 等上一句执行完才会执行</span>
-
-<span class="nx">exports</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span> <span class="c1">// 暴露 b 函数接口</span>
-  <span class="c1">// do something</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">public</span> <span class="kd">class</span> <span class="nx">Stack</span><span class="o">&lt;</span><span class="nx">Item</span><span class="o">&gt;</span>
+<span class="p">{</span>
+    <span class="kr">private</span> <span class="nx">Node</span> <span class="nx">first</span><span class="p">;</span>
+    <span class="kr">private</span> <span class="nx">int</span> <span class="nx">N</span><span class="p">;</span>
+    <span class="c1">//inner class</span>
+    <span class="kr">private</span> <span class="kd">class</span> <span class="nx">Node</span>
+    <span class="p">{</span>
+        <span class="nx">Item</span> <span class="nx">item</span><span class="p">;</span>
+        <span class="nx">Node</span> <span class="nx">next</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="kr">public</span> <span class="nx">boolean</span> <span class="nx">isEmpty</span><span class="p">()</span> 
+    <span class="p">{</span><span class="k">return</span> <span class="nx">first</span> <span class="o">==</span> <span class="kc">null</span><span class="p">;}</span>
+    
+    <span class="kr">public</span> <span class="nx">int</span> <span class="nx">size</span><span class="p">()</span>
+    <span class="p">{</span> <span class="k">return</span> <span class="nx">N</span><span class="p">;</span> <span class="p">}</span>
+    
+    <span class="kr">public</span> <span class="k">void</span> <span class="nx">push</span><span class="p">(</span><span class="nx">Item</span> <span class="nx">item</span><span class="p">){</span>
+        <span class="nx">Node</span> <span class="nx">oldFirst</span> <span class="o">=</span> <span class="nx">first</span><span class="p">;</span>
+        <span class="nx">first</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Node</span><span class="p">();</span>
+        <span class="nx">first</span><span class="p">.</span><span class="nx">item</span> <span class="o">=</span> <span class="nx">item</span><span class="p">;</span>
+        <span class="nx">first</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">oldFirst</span><span class="p">;</span>
+        <span class="nx">N</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="kr">public</span> <span class="nx">Item</span> <span class="nx">pop</span><span class="p">(){</span>
+        <span class="nx">Item</span> <span class="nx">item</span> <span class="o">=</span> <span class="nx">first</span><span class="p">.</span><span class="nx">item</span><span class="p">;</span>
+        <span class="nx">first</span> <span class="o">=</span> <span class="nx">first</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
+        <span class="nx">N</span><span class="o">--</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">item</span><span class="p">;</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">exports</code>是一个内置对象，就像<code class="language-plaintext highlighter-rouge">require</code>是一个内置加载函数一样。如果你希望直接赋值一个完整的对象或者构造函数，覆写<code class="language-plaintext highlighter-rouge">module.exports</code>就可以了。</p>
-
-<p>CommonJS 前身叫 ServerJS ，<strong>后来希望能更加 COMMON，成为通吃各种环境的模块规范，改名为 CommonJS</strong> 。CommonJS 最初只专注于 Server-side 而非浏览器环境，因此它采用了同步加载的机制，这对服务器环境（硬盘 I/O 速度）不是问题，而对浏览器环境（网速）来说并不合适。</p>
-
-<p>因此，各种适用于浏览器环境的模块框架与标准逐个诞生，他们的共同点是：</p>
-
+<p>一个有N个元素的Stack,每个元素占用的内存：</p>
 <ul>
-  <li>采用异步加载（预先加载所有依赖的模块后回调执行，符合浏览器的网络环境）</li>
-  <li>虽然代码风格不同，但其实都可以看作 CommonJS Modules 语法的变体。</li>
-  <li>都在向着 <strong>COMMON</strong> 的方向进化：<strong>兼容不同风格，兼容浏览器和服务器两种环境</strong></li>
+  <li>16 bytes for class overhead <code class="language-plaintext highlighter-rouge">Stack</code></li>
+  <li>8 bytes for inner class extra overhead. As the inner class <code class="language-plaintext highlighter-rouge">Node</code> is not static, so it has a reference to the outer class.</li>
+  <li>8 bytes for the reference to String</li>
+  <li>8 bytesfor the reference to Node
+Total: 40 bytes per stack node
+ref: <a href="https://stackoverflow.com/questions/12193116/java-size-of-inner-class">Java:Size of inner class-Stackoverflow</a></li>
 </ul>
 
-<p>本文接下来要讨论的典例是：</p>
+<h3 id="more">More:</h3>
+<h4 id="11">1.1</h4>
+<p>new Object()将占用多少byte的内存空间？</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">原生类型</span><span class="p">(</span><span class="nx">primitive</span> <span class="nx">type</span><span class="p">)</span><span class="nx">的内存占用</span>
+<span class="nx">Primitive</span> <span class="nx">Type</span>      <span class="nx">Memory</span> <span class="nx">Required</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span>
+    <span class="nx">boolean</span>                      <span class="mi">1</span>
+    <span class="nx">byte</span>                         <span class="mi">1</span>
+    <span class="nx">short</span>                        <span class="mi">2</span>
+    <span class="nx">char</span>                         <span class="mi">2</span>
+    <span class="nx">int</span>                          <span class="mi">4</span>
+    <span class="nx">float</span>                        <span class="mi">4</span>
+    <span class="nx">long</span>                         <span class="mi">8</span>
+    <span class="nx">double</span>                       <span class="mi">8</span>
+</code></pre></div></div>
+<h4 id="12">1.2</h4>
+<p>静态类与非静态类
+In <strong>static</strong> method, The memory of a static method is fixed in the ram, for this reason we don’t need the object of a class in which the static method is defined to call the static method. To call the method we need to write the name of the method followed by the class name.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">GFG</span><span class="p">{</span>
+ <span class="kr">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="nx">geek</span><span class="p">()</span>
+ <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// calling</span>
+<span class="nx">GFG</span><span class="p">.</span><span class="nx">geek</span><span class="p">();</span>
 
-<ul>
-  <li>RequireJS  AMD（异步加载，预执行，依赖前置。默认推荐 AMD 写法）</li>
-  <li>SeaJS  CMD（异步加载，懒执行，依赖就近，默认推荐 CommonJS 写法）</li>
-</ul>
+</code></pre></div></div>
+<p>In <strong>non-static</strong> method, the memory of non-static method is not fixed in the ram, so we need class object to call a non-static method. To call the method we need to write the name of the method followed by the class object name.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">GFG</span><span class="p">{</span>
+ <span class="kr">public</span> <span class="k">void</span> <span class="nx">geek</span><span class="p">()</span>
+ <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// creating object</span>
+<span class="nx">GFG</span> <span class="nx">g</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GFG</span><span class="p">();</span>
+<span class="c1">// calling</span>
+<span class="nx">g</span><span class="p">.</span><span class="nx">geek</span><span class="p">();</span>
+</code></pre></div></div>
 
-<h2 id="history">History</h2>
-
-<!--<h2 id="history"> History </h2>-->
-
+<h2 id="利用扩容数组实现栈">利用扩容数组实现栈</h2>
+<p>增加了resize函数：</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">public</span> <span class="kd">class</span> <span class="nx">Stack</span><span class="o">&lt;</span><span class="nx">Item</span><span class="o">&gt;</span>
+<span class="p">{</span>
+    <span class="kr">private</span> <span class="nx">Item</span><span class="p">[]</span> <span class="nx">s</span><span class="p">;</span>
+    <span class="kr">private</span> <span class="nx">int</span> <span class="nx">N</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    
+    <span class="kr">public</span> <span class="nx">Stack</span><span class="p">(</span><span class="nx">int</span> <span class="nx">capacity</span><span class="p">)</span>
+    <span class="p">{</span><span class="nx">s</span> <span class="o">=</span> <span class="p">(</span><span class="nx">Item</span><span class="p">[])</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">[</span><span class="nx">capacity</span><span class="p">];}</span>
+    
+    <span class="kr">public</span> <span class="nx">boolean</span> <span class="nx">isEmpty</span><span class="p">()</span> 
+    <span class="p">{</span><span class="k">return</span> <span class="nx">N</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;}</span>
+    
+    <span class="kr">public</span> <span class="nx">int</span> <span class="nx">size</span><span class="p">()</span>
+    <span class="p">{</span><span class="k">return</span> <span class="nx">N</span><span class="p">;}</span>
+    
+    <span class="kr">private</span> <span class="k">void</span> <span class="nx">resize</span><span class="p">(</span><span class="nx">int</span> <span class="nx">capacity</span><span class="p">){</span>
+        <span class="nx">Item</span><span class="p">[]</span> <span class="nx">copy</span> <span class="o">=</span> <span class="p">(</span><span class="nx">Item</span><span class="p">[])</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">[</span><span class="nx">capacity</span><span class="p">];</span>
+        <span class="k">for</span><span class="p">(</span><span class="nx">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="nx">copy</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="nx">s</span> <span class="o">=</span> <span class="nx">copy</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="kr">public</span> <span class="k">void</span> <span class="nx">push</span><span class="p">(</span><span class="nx">Item</span> <span class="nx">item</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">N</span> <span class="o">==</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="nx">resize</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>
+        <span class="nx">s</span><span class="p">[</span><span class="nx">N</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="nx">item</span><span class="p">;</span>
+    <span class="p">}</span>
+   
+    <span class="kr">public</span> <span class="nx">Item</span> <span class="nx">pop</span><span class="p">(){</span>
+        <span class="nx">Item</span> <span class="nx">item</span> <span class="o">=</span> <span class="nx">s</span><span class="p">[</span><span class="o">--</span><span class="nx">N</span><span class="p">];</span>
+        <span class="nx">s</span><span class="p">[</span><span class="nx">N</span><span class="p">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">// avoid loitering</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">N</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">N</span> <span class="o">==</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span> <span class="nx">resize</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">item</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h3 id="more-1">More</h3>
+<h4 id="21">2.1</h4>
+<p>what is loitering?</p>
 <blockquote>
-  <p>此段落参考自玉伯的 <a href="https://github.com/seajs/seajs/issues/588">前端模块化开发那点历史</a></p>
+  <p>Loitering: Holding a reference to an object when it is no longer needed. – <em>Algorithm</em>, Priceton Universily</p>
 </blockquote>
 
-<p>09-10 年间，CommonJS（那时还叫 ServerJS） 社区推出 <a href="http://wiki.commonjs.org/wiki/Modules">Modules/1.0</a> 规范，并且在 Node.js 等环境下取得了很不错的实践。</p>
+<p>example:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// loitering</span>
+<span class="kr">public</span> <span class="nb">String</span> <span class="nx">pop</span><span class="p">()</span>
+<span class="p">{</span> <span class="k">return</span> <span class="nx">s</span><span class="p">[</span><span class="o">--</span><span class="nx">N</span><span class="p">];</span> <span class="p">}</span>
 
-<p>09年下半年这帮充满干劲的小伙子们想把 ServerJS 的成功经验进一步推广到浏览器端，于是将社区改名叫 CommonJS，同时激烈争论 Modules 的下一版规范。分歧和冲突由此诞生，逐步形成了三大流派：</p>
-
-<ol>
-  <li><strong>Modules/1.x</strong> 流派。这个观点觉得 1.x 规范已经够用，只要移植到浏览器端就好。要做的是新增 <a href="http://wiki.commonjs.org/wiki/Modules/Transport">Modules/Transport</a> 规范，即在浏览器上运行前，先通过转换工具将模块转换为符合 Transport 规范的代码。主流代表是服务端的开发人员。现在值得关注的有两个实现：越来越火的 component 和走在前沿的 es6 module transpiler。</li>
-  <li><strong>Modules/Async</strong> 流派。这个观点觉得浏览器有自身的特征，不应该直接用 Modules/1.x 规范。这个观点下的典型代表是 <a href="http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition">AMD</a> 规范及其实现 <a href="http://requirejs.org/">RequireJS</a>。这个稍后再细说。</li>
-  <li><strong>Modules/2.0</strong> 流派。这个观点觉得浏览器有自身的特征，不应该直接用 Modules/1.x 规范，但应该尽可能与 Modules/1.x 规范保持一致。这个观点下的典型代表是 BravoJS 和 FlyScript 的作者。BravoJS 作者对 CommonJS 的社区的贡献很大，这份 Modules/2.0-draft 规范花了很多心思。FlyScript 的作者提出了 Modules/Wrappings 规范，这规范是 CMD 规范的前身。可惜的是 BravoJS 太学院派，FlyScript 后来做了自我阉割，将整个网站（flyscript.org）下线了。这个观点在本文中的典型代表就是 SeaJS 和 CMD 了</li>
-</ol>
-
-<p>补一嘴：阿里 KISSY 的 KMD 其实跟 AMD 非常类似，只是用 <code class="language-plaintext highlighter-rouge">add</code>和<code class="language-plaintext highlighter-rouge">use</code> 两个源自于 YUI Modules 的函数名替换了 <code class="language-plaintext highlighter-rouge">define</code> 和 <code class="language-plaintext highlighter-rouge">require</code> ，但其原理更接近 RequireJS ，与 YUI Modules 的 <code class="language-plaintext highlighter-rouge">Y</code> 沙箱 Attach 机制并不相同</p>
+<span class="c1">// avoid loitering</span>
+<span class="kr">public</span> <span class="nb">String</span> <span class="nx">pop</span><span class="p">()</span>
+<span class="p">{</span>
+ <span class="nb">String</span> <span class="nx">item</span> <span class="o">=</span> <span class="nx">s</span><span class="p">[</span><span class="o">--</span><span class="nx">N</span><span class="p">];</span>
+ <span class="nx">s</span><span class="p">[</span><span class="nx">N</span><span class="p">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+ <span class="k">return</span> <span class="nx">item</span><span class="p">;</span>
+<span class="p">}</span> 
+</code></pre></div></div>
 
 <h2 id="requirejs--amd">RequireJS  AMD</h2>
 
@@ -426,49 +493,6 @@
 
 <p>Sea.js 借鉴了 RequireJS 的不少东西，比如将 FlyScript 中的 module.declare 改名为 define 等。Sea.js 更多地来自 Modules/2.0 的观点，但尽可能去掉了学院派的东西，加入了不少实战派的理念。</p>
 
-<h2 id="amd-vs-cmd">AMD vs CMD</h2>
-
-<p><strong>虽然两者目前都兼容各种风格，但其底层原理并不相同，从其分别推荐的写法就可以看出两者背后原理的不同：</strong></p>
-
-<ol>
-  <li>对于依赖的模块，AMD 是<strong>提前执行</strong>，CMD 是<strong>懒执行</strong>。（都是先加载）
-    <ul>
-      <li>CMD 推崇<strong>依赖就近</strong>，AMD 推崇<strong>依赖前置</strong>。</li>
-    </ul>
-  </li>
-</ol>
-
-<p>看代码：</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// AMD 默认推荐</span>
-
-<span class="nx">define</span><span class="p">([</span><span class="dl">'</span><span class="s1">./a</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">./b</span><span class="dl">'</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// 依赖前置，提前执行</span>
-
-    <span class="nx">a</span><span class="p">.</span><span class="nx">doSomething</span><span class="p">()</span>
-    <span class="nx">b</span><span class="p">.</span><span class="nx">doSomething</span><span class="p">()</span>
-
-<span class="p">})</span>
-
-</code></pre></div></div>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// CMD</span>
-
-<span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">,</span> <span class="nx">exports</span><span class="p">,</span> <span class="nx">module</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./a</span><span class="dl">'</span><span class="p">)</span>
-    <span class="nx">a</span><span class="p">.</span><span class="nx">doSomething</span><span class="p">()</span>
-
-    <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./b</span><span class="dl">'</span><span class="p">)</span> <span class="c1">// 依赖就近，延迟执行</span>
-    <span class="nx">b</span><span class="p">.</span><span class="nx">doSomething</span><span class="p">()</span>
-<span class="p">})</span>
-</code></pre></div></div>
-
-<h2 id="webpack">WebPack</h2>
-
-<blockquote>
-  <p>working…</p>
-</blockquote>
-
 
                 <hr>
 
@@ -481,13 +505,12 @@
                     data-title="01 Stack and Queue"
                     data-url="http://localhost:4000/2021/03/14/Stack-and-Queue/"
                     data-images="http://localhost:4000/img/post-bg-rwd.jpg"
-                    data-content="Foreword
+                    data-content="Catalog
 
 
-  Here comes Module!
-
-
-随着网站逐渐变成「互联网应用程序」，嵌入网页的 JavaScript 代码越来越庞大，... | Ruoxuan Wang " >
+  Linked List Implementation
+  Resizing Array Implementation
+  Requ... | Ruoxuan Wang " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
