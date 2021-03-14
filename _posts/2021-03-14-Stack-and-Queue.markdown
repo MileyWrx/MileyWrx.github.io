@@ -107,7 +107,7 @@ g.geek();
 ```
 
 ## 利用扩容数组实现栈
-
+增加了resize函数：
 ```js
 public class Stack<Item>
 {
@@ -144,7 +144,24 @@ public class Stack<Item>
     }
 }
 ```
+### More
+#### 2.1
+what is loitering?
+> Loitering: Holding a reference to an object when it is no longer needed. -- _Algorithm_ slides by Priceton Universily
+example:
+```js
+// loitering
+public String pop()
+{ return s[--N]; }
 
+// avoid loitering
+public String pop()
+{
+ String item = s[--N];
+ s[N] = null;
+ return item;
+} 
+```
 
 ## RequireJS  AMD
 
