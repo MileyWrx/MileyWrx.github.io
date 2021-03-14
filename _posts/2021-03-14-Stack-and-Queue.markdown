@@ -70,9 +70,8 @@ public class Stack<Item>
 * 8 bytesfor the reference to Node
 Total: 40 bytes per stack node
 > ref[Java:Size of inner class-Stackoverflow](https://stackoverflow.com/questions/12193116/java-size-of-inner-class)
-
-**More:**  
-### 1.1
+### More:
+#### 1.1
 new Object()将占用多少byte的内存空间？
 ```js
 原生类型（primitive type）的内存占用
@@ -87,7 +86,7 @@ Primitive Type      Memory Required(bytes)
     long                         8
     double                       8
 ```
-### 1.2
+#### 1.2
 静态类与非静态类
 In **static** method, The memory of a static method is fixed in the ram, for this reason we don’t need the object of a class in which the static method is defined to call the static method. To call the method we need to write the name of the method followed by the class name.   
 ```js
