@@ -19,6 +19,7 @@ tags:
 3.  [Queue: Linked List Implementation](#利用链表实现队列)
 4.  [Application:](#算数表达式求值)
 
+[本章节作业代码](https://github.com/MileyWrx/Homework_PrincetonAlgorithm/tree/master/week2)
 
 > Stack: Examine the item most reccently added ("last in forst out").
 
