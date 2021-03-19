@@ -162,8 +162,16 @@ public String pop()
  return item;
 } 
 ```
+#### 2.2 Recursive
+example:
+```js
+static int gcd(int p, int q) {
+ if (q == 0) return p;
+ else return gcd(q, p % q);
+ }
+```
 
-#### 2.2 Iterator in Java
+#### 2.3 Iterator in Java
 1.如果一个类Implements Iterable,那么这个类需要有iterator()函数，返回这个类的Itertor  
 eg:作业中 **public Dequeqe<Item> implements Iterable<Item>**
 3.如果一个类Implements Iterator,那么这个类需要有:
@@ -248,8 +256,49 @@ public class Queue<Item>
 ```
  
 ## 算数表达式求值
+例如：( 1 + ( ( 2 + 3 ) * ( 4 + 5 ) ) )  
+在这里我们采用E.W.Dijkstra发明的算法，
+ * value: push onto the value stack
+ * operator: push onto the operator stack
+ * Left parenthesis: ignore
+ * Right parenthesis: pop operator and two values, push the result of calculation onto the oprand (value) stack
 ```js
+Dijkstra 双栈算术表达式求值算法:
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.Stack;
 
+public class Evaluate
+{
+    public static void main(String[] args)
+    {
+        Stack<String> ops = new Stack<String>();
+        Stack<Double> vals = new Stack<Double>();
+        while (!StdIn.isEmpty())
+        {
+            String s = StdIn.readString();
+            if (s.equals("(")) ;
+            else if (s.equals("+")) ops.push(s);
+            else if (s.equals("-")) ops.push(s);
+            else if (s.equals("*")) ops.push(s);
+            else if (s.equals("/")) ops.push(s);
+            else if (s.equals("sqrt")) ops.push(s);
+            else if (s.equals(")"))
+            {
+                String op = ops.pop();
+                double v = vals.pop();
+                if (op.equals("+")) v = vals.pop() + v;
+                else if (op.equals("-")) v = vals.pop() - v;
+                else if (op.equals("*")) v = vals.pop() * v;
+                else if (op.equals("/")) v = vals.pop() / v;
+                else if (op.equals("sqrt")) v = Math.sqrt(v);
+                vals.push(v);
+            }
+            else vals.push(Double.parseDouble(s));
+        }
+        StdOut.println(vals.pop());
+    }
+}
 ```
 
 #### Java的数组不支持Generic泛型
