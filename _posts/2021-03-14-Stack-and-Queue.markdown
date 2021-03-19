@@ -12,8 +12,7 @@ tags:
 
 
 
-## Catalog
-
+## Contents
 
 1.  [Stack: Linked List Implementation](#利用链表实现栈)
 2.  [Stack: Resizing Array Implementation](#利用扩容数组实现栈)
