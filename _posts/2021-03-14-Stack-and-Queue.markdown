@@ -172,12 +172,11 @@ static int gcd(int p, int q) {
 ```
 
 #### 2.3 Iterator in Java
-1.如果一个类Implements Iterable,那么这个类需要有iterator()函数，返回这个类的Itertor  
-eg:作业中 'public Dequeqe<Item> implements Iterable<Item>'  
-2.如果一个类Implements Iterator,那么这个类需要有:
+1. 如果一个类Implements Iterable,那么这个类需要有iterator()函数，返回这个类的Itertor。eg: 作业中 public Dequeqe<Item> implements Iterable<Item>  
+2. 如果一个类Implements Iterator,那么这个类需要有:
  * boolean hasNext(): 判断current是不是最后一个元素
  * void next(): 返回当前的元素，并把指针向后移动一个
-3.自己实现一个Iterator：
+3. 自己实现一个Iterator：
  * 将这个Iterator设置为你要Iterate的类的Inner Class
  * 由于内部类可以访问外部类的内部变量，在iterator中设置一个current，一般指向外部类需要iterate的的集合的头指针  
  
@@ -261,6 +260,7 @@ public class Queue<Item>
  * operator: push onto the operator stack
  * Left parenthesis: ignore
  * Right parenthesis: pop operator and two values, push the result of calculation onto the oprand (value) stack  
+  
 ```js
 // Dijkstra 双栈算术表达式求值算法:
 import edu.princeton.cs.algs4.StdIn;
