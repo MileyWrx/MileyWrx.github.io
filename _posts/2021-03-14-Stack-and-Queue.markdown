@@ -260,7 +260,7 @@ public class Queue<Item>
  * value: push onto the value stack
  * operator: push onto the operator stack
  * Left parenthesis: ignore
- * Right parenthesis: pop operator and two values, push the result of calculation onto the oprand (value) stack
+ * Right parenthesis: pop operator and two values, push the result of calculation onto the oprand (value) stack  
 ```js
 // Dijkstra 双栈算术表达式求值算法:
 import edu.princeton.cs.algs4.StdIn;
@@ -298,8 +298,8 @@ public class Evaluate
         StdOut.println(vals.pop());
     }
 }
-```
 
+```
 #### Java的数组不支持Generic泛型
 
 
