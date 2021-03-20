@@ -17,7 +17,7 @@ tags:
 1.  [Stack: Linked List Implementation](#利用链表实现栈)
 2.  [Stack: Resizing Array Implementation](#利用扩容数组实现栈)
 3.  [Queue: Linked List Implementation](#利用链表实现队列)
-4.  [Application:](#算数表达式求值)
+4.  [Application:Arithmetic expression calculations](#算数表达式求值)
 
 [本章节作业代码](https://github.com/MileyWrx/Homework_PrincetonAlgorithm/tree/master/week2)
 
@@ -173,11 +173,11 @@ static int gcd(int p, int q) {
 
 #### 2.3 Iterator in Java
 1.如果一个类Implements Iterable,那么这个类需要有iterator()函数，返回这个类的Itertor  
-eg:作业中 **public Dequeqe<Item> implements Iterable<Item>**
-3.如果一个类Implements Iterator,那么这个类需要有:
+eg:作业中 'public Dequeqe<Item> implements Iterable<Item>'  
+2.如果一个类Implements Iterator,那么这个类需要有:
  * boolean hasNext(): 判断current是不是最后一个元素
  * void next(): 返回当前的元素，并把指针向后移动一个
-4.自己实现一个Iterator：
+3.自己实现一个Iterator：
  * 将这个Iterator设置为你要Iterate的类的Inner Class
  * 由于内部类可以访问外部类的内部变量，在iterator中设置一个current，一般指向外部类需要iterate的的集合的头指针  
  
@@ -256,14 +256,13 @@ public class Queue<Item>
 ```
  
 ## 算数表达式求值
-例如：( 1 + ( ( 2 + 3 ) * ( 4 + 5 ) ) )  
-在这里我们采用E.W.Dijkstra发明的算法，
+例如：( 1 + ( ( 2 + 3 ) * ( 4 + 5 ) ) )  在这里我们采用E.W.Dijkstra发明的算法，
  * value: push onto the value stack
  * operator: push onto the operator stack
  * Left parenthesis: ignore
  * Right parenthesis: pop operator and two values, push the result of calculation onto the oprand (value) stack
 ```js
-Dijkstra 双栈算术表达式求值算法:
+// Dijkstra 双栈算术表达式求值算法:
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Stack;
@@ -307,3 +306,4 @@ public class Evaluate
 ## References
 1. [Princeton《算法》(上) 笔记 - CSDN](https://blog.csdn.net/littleorange6/article/details/84301824)   
 2. [普林斯顿算法: 背包、队列和栈](https://libhappy.com/2016/03/algs-1.0/)
+3. [TO THE NEW: Why is generic array creation not allowed in java?](https://www.tothenew.com/blog/why-is-generic-array-creation-not-allowed-in-java/)
