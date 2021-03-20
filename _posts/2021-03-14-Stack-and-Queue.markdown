@@ -215,7 +215,8 @@ for(Item item: stack){
 ```
 ## 利用链表实现队列
 
-> RequireJS is a JavaScript file and module loader. It is optimized for in-browser use, but it can be used in other JavaScript environments
+> RequireJS is a JavaScript file and module loader. It is optimized for in-browser use, but it can be used in other JavaScript environments  
+>   
 
 ```js
 public class Queue<Item>
